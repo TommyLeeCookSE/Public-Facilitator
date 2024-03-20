@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparison Tool</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+
+    <div class="content">
+        <div class="page-title">
+            <h1>Comparison Tool</h1>
+        </div>
+        
+        <div class ="instructions-video-container">
+            <div class instructions-video> 
+                <video width = "320" height = "240" controls>
+                    <source src = "{{url_for('static', filename='CSR.mp4') }}" type = "video/mp4">
+                    Your brower does not support the video tag.
+                </video>
+            </div>
+            <div class="instructions">
+                <h2>How to Use:</h2>
+                <ol>
+                    <li>IN PROGRESS</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="dropdowns">
+        <select id="dropdown1">
+            <option value = ""></option>
+            {% for item in result_list %}
+            <option value="{{item[0]}}">{{item[0]}}</option>
+            {% endfor %}
+        </select>
+
+        <select id="dropdown2">
+            <option value = ""></option>
+            {% for item in result_list %}
+            <option value="{{item[0]}}">{{item[0]}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <table id="comparison-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Total Assigned WO</th>
+                <th>Total Current WO</th>
+                <th>Total Past Due WO</th>
+                <th>Total Non PM WO</th>
+                <th>Total Current Non PM WO</th>
+                <th>Total Past Due Non PM WO</th>
+                <th>Total PM WO</th>
+                <th>Total Current PM WO</th>
+                <th>Total Past Due PM WO</th>
+                <th>Total Custodial Requests</th>
+                <th>Total Custodial Requests 30 Days</th>
+                <th>Total Custodial Requests 7 Days</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be added here by the JavaScript code -->
+        </tbody>
+    </table>
+
+    <script src="{{ url_for('static', filename='comparisonToolScripts.js') }}"></script>
+    {% endblock %}
+    
+</body>
+</html>

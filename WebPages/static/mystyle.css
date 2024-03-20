@@ -1,0 +1,200 @@
+table{
+    width:100%
+  } 
+th, td{
+  border: 0.5px solid black;
+}
+
+
+#csvData {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+form {
+  margin-top: 35px; /* Adjust the value as desired */
+  
+}
+
+label {
+  display: inline-block;
+  width: 100%; 
+  text-align: left;
+  margin-bottom: 10px
+}
+.topnav{
+  background-color: red;
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px
+}
+
+.topnav a:hover {
+  background-color: rgb(3, 3, 148);
+}
+
+.topnav a.active {
+  background-color: grey;
+  color: white;
+  border-bottom: 3px solid grey;
+}
+
+.content{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.instructions-video-container{
+  display: flex;
+  justify-content: space-between;
+  width: 200%
+}
+
+.instructions{
+  width: 50%
+}
+
+.table-container{
+  width: 100%
+}
+
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 1;
+}
+
+.daypass-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.daypass-dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.daypass-dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .daypass-dropdown-content {
+  display: block;
+}
+
+
+/* Apply styles to the entire table */
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  width: 100%; /* Set the table width to 100% */
+}
+
+/* Zebra stripes for rows */
+.styled-table tr:nth-child(even) {
+  background-color: grey;
+}
+/* Make odd rows red */
+.styled-table tr:nth-child(odd) {
+  background-color: rgb(230, 138, 138);
+}
+
+
+/* Horizontal dividers */
+.styled-table tr {
+  border-bottom: 1px solid #ddd;
+}
+
+/* Hover effect */
+.styled-table tr:hover {
+  background-color: blue; /* Light blue, adjust as needed */
+}
+
+/* Equal width for table columns */
+.styled-table th,
+.styled-table td {
+  width: 33.33%; /* Divide the available width equally among columns */
+  color: white; /* Text color */
+  text-align: center; /* Center-align text */
+  font-weight: bold; /* Make text bold */
+}
+
+.styled-table th {
+  background-color: red;
+}
+
+
+#comparison-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+}
+
+#comparison-table tr:nth-child(even) {
+  background-color: grey;
+  color: white;
+}
+
+#comparison-table tr:nth-child(odd) {
+  background-color: white;
+  color: black;
+}
+
+#comparison-table tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#comparison-table tr:hover {
+  background-color: lightblue;
+  color: white;
+}
+
+#comparison-table th,
+#comparison-table td {
+  width: calc(100% / 13);
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #ddd;
+  font-size: 1em;
+}
+
+#comparison-table th {
+  background-color: red;
+  color: white;
+  text-transform: uppercase;
+}
