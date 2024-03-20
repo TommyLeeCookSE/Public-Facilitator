@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/mystyle.css">
+    <!-- <title>Document</title> -->
+</head>
+<body>
+    <div class="topnav">
+        <a href="https://edwardslifesciences.sharepoint.com/sites/OneEdwards">
+            <img src="{{ url_for('static', filename='edwards.jpeg') }}" style="height:15px;width:55px;">
+        </a>
+        <a href = "{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('badgeCaser') }}">Badge Automator</a>
+        <a href="{{ url_for('movesAutomator') }}">Moves Automator</a>
+        <div class="dropdown">
+            <a class="dropbtn" href="dayPassAutomator">Day Pass Automator</a>
+            <div class="daypass-dropdown-content">
+                <a href="{{ url_for('dayPassAutomator') }}">Day Pass Automator</a>
+                <a href="{{ url_for('dayPassEntry') }}">Day Pass Entry</a>
+                <a href="#">Day Pass Viewer</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a class="dropbtn" href="centerstoneTab">Centerstone Tools</a>
+            <div class="daypass-dropdown-content">
+                <a href="{{ url_for('displayCenterstoneCsvInput') }}">Centerstone CSV Input</a>
+                <a href="{{ url_for('centerstoneReporter') }}">Centerstone Reporter</a>
+                <a href="{{ url_for('displayComparisonTool') }}">Comparison Tool</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a class="dropbtn" href="#">Meeting Automator</a>
+            <div class="daypass-dropdown-content">
+                <a href="{{ url_for('meetingAutomator') }}">Meeting Automator</a>
+                <a href="#">CSV Input</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
