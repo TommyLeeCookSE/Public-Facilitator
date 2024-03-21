@@ -31,19 +31,31 @@
     </div>
 
     <div class="dropdowns">
-        <select id="dropdown1">
-            <option value = ""></option>
-            {% for item in result_list %}
-            <option value="{{item[0]}}">{{item[0]}}</option>
-            {% endfor %}
-        </select>
+        <form>
+            <label for="firstDate">First Date:</label>
+            <select id="dropdown1">
+                <option value = ""></option>
+                {% for item in result_list %}
+                <option value="{{item[0]}}">{{item[0]}}</option>
+                {% endfor %}
+            </select>
 
-        <select id="dropdown2">
-            <option value = ""></option>
-            {% for item in result_list %}
-            <option value="{{item[0]}}">{{item[0]}}</option>
-            {% endfor %}
-        </select>
+            <br>
+            <br>
+
+            <label for="secondDate">Second Date:</label>
+            <select id="dropdown2">
+                <option value = ""></option>
+                {% for item in result_list %}
+                <option value="{{item[0]}}">{{item[0]}}</option>
+                {% endfor %}
+            </select>
+
+            <br>
+            <br>
+
+            <input type="submit" value = "Submit">
+        </form>
     </div>
 
     <table id="comparison-table">
@@ -70,7 +82,7 @@
         </tbody>
     </table>
 
-    <script src="{{ url_for('static', filename='comparisonToolScripts.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='comparisonToolScripts.js') }}"></script> -->
     {% endblock %}
     
 </body>
