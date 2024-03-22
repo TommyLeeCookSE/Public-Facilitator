@@ -1,3 +1,0 @@
-from badgeAutomator import *
-
-badgeFileReader()
