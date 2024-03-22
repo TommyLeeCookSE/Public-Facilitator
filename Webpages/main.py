@@ -81,6 +81,19 @@ def get_comparison_data():
     for item in result_list:
         if item[0] == date:
             return jsonify(item)
+        
+@app.route('/compareWODates', methods=['POST'])
+def compareWODates():
+    first_date = request.form.get('dropdown1')
+    second_date = request.form.get('dropdown2')
+    listOfDates = [first_date,second_date]
+
+    final_list_of_dates = comparisonDrawer.pullAndCompareDates(listOfDates)
+
+    dates = comparisonDrawer.pullFromDatabase()
+    result_list=list(dates)
+
+    return render_template('ComparisonTool.html', result_list=result_list,final_list_of_dates=final_list_of_dates)
 
 @app.route('/processCenterstoneCsvInput', methods=['POST'])
 def processCenterstoneCsvInput():

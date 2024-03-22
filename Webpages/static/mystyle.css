@@ -118,16 +118,18 @@ label {
   font-family: sans-serif;
   min-width: 400px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  width: 100%; /* Set the table width to 100% */
+  width: 100%;
 }
 
 /* Zebra stripes for rows */
 .styled-table tr:nth-child(even) {
   background-color: grey;
+  color: white;
 }
-/* Make odd rows red */
+
 .styled-table tr:nth-child(odd) {
-  background-color: rgb(230, 138, 138);
+  background-color: white;
+  color: black;
 }
 
 
@@ -138,20 +140,24 @@ label {
 
 /* Hover effect */
 .styled-table tr:hover {
-  background-color: blue; /* Light blue, adjust as needed */
+  background-color: lightblue;
+  color: white;
 }
 
 /* Equal width for table columns */
 .styled-table th,
 .styled-table td {
-  width: 33.33%; /* Divide the available width equally among columns */
-  color: white; /* Text color */
-  text-align: center; /* Center-align text */
-  font-weight: bold; /* Make text bold */
+  width: calc(100% / 3); /* Divide the available width equally among columns */
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #ddd;
+  font-size: 1em;
 }
 
 .styled-table th {
   background-color: red;
+  color: white;
+  text-transform: uppercase;
 }
 
 
