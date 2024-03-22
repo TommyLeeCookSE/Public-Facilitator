@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../static/mystyle.css">
+        <title>Centerstone Reporter</title>
+    </head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+    
+    <div class="content">
+        <div class="page-title">
+            <h1>Centerstone Reporter</h1>
+        </div>
+        
+        <div class ="instructions-video-container">
+            <div class instructions-video> 
+                <video width = "320" height = "240" controls>
+                    <source src = "{{url_for('static', filename='CSR.mp4') }}" type = "video/mp4">
+                    Your brower does not support the video tag.
+                </video>
+            </div>
+            <div class="instructions">
+                <h2>How to Use:</h2>
+                <ol>
+                    <li>Go to Centerstone Website and download All Work Orders</li>
+                    <li>Upload list and press Process</li>
+                    <li>Screenshot contents and send to Debra/Alex/Asgard/Facilities</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+
+    {% if processedData is defined %}
+    <div class="table-container">
+        <h2>Work Order Totals || {{ processedData[0] }}</h2>
+        <table class="styled-table">
+            <tr>
+                <th>Total Assigned Work Orders</th>
+                <th>Total Current Work Orders</th>
+                <th>Total Past Due Work Orders</th>
+            </tr>
+            <tr>
+                <td>{{ processedData[1] }}</td>
+                <td>{{ processedData[2] }}</td>
+                <td>{{ processedData[3] }}</td>
+            </tr>
+        </table>
+
+        <h2>Non Preventative Maintenance Work Orders</h3>
+        <table class="styled-table">
+            <tr>
+                <th>Total Non PM Work Orders</th>
+                <th>Total Current Non PM</th>
+                <th>Total Past Due Non Pm</th>
+            </tr>
+            <tr>
+                <td>{{ processedData[5] }}</td>
+                <td>{{ processedData[6] }}</td>
+                <td>{{ processedData[7] }}</td>
+            </tr>
+        </table>
+
+        <h2>Preventative Maintenance Work Orders</h2>
+        <table class="styled-table">
+            <tr>
+                <th>Total PM Work Orders</th>
+                <th>Total Current PM</th>
+                <th>Total Past Due PM</th>
+            </tr>
+            <tr>
+                <td>{{ processedData[8] }}</td>
+                <td>{{ processedData[9] }}</td>
+                <td>{{ processedData[10] }}</td>
+            </tr>
+        </table>
+
+        <h2>Custodial Requests</h2>
+        <table class="styled-table">
+            <tr>
+                <th>Total Custodial Requests</th>
+                <th>Custodial Requests 30 Days</th>
+                <th>Custodial Requets 7 days</th>
+            </tr>
+            <tr>
+                <td>{{ processedData[4] }}</td>
+                <td>{{ processedData[12] }}</td>
+                <td>{{ processedData[11] }}</td>
+            </tr>
+        </table>
+    </div>
+    {% endif %}
+    
+    
+<!-- <script src="{{ url_for('static', filename='daypassScripts.js') }}"></script> -->
+{% endblock %}
+</body>
+</html>
+
