@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/mystyle.css">
+    <title>Day Pass Entry</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block content %} 
+
+    <div class="content">
+        <div class="page-title">
+            <h1>Day Pass Entry</h1>
+        </div>
+        
+        <div class ="instructions-video-container">
+            <div class instructions-video> 
+                <video width = "320" height = "240" controls>
+                    <source src = "{{url_for('static', filename='DPE.mp4') }}" type = "video/mp4">
+                    Your brower does not support the video tag.
+                </video>
+            </div>
+            <div class="instructions">
+                <h2>How to Use:</h2>
+                <ol>
+                    <li>Upload Traction Guest File</li>
+                    <li>Press Process</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <form id="tractionGuestForm" action="{{ url_for('tractionGuestUpload') }}" method="post" enctype="multipart/form-data">
+
+        <label for="fileUpload">Upload a file:</label>
+        <input type="file" id="tractionFileUpload" name="tractionFileUpload"><br>
+    
+        <input type="submit" id="processButton" value="Process">
+    </form>
+    {% endblock %}
+</body>
+</html>
