@@ -1,78 +1,93 @@
-
-# Facilitator - Reporting and Automation Suite
-
-This project originally started as individual python scripts used to automate the Facilities Service Desk role at Edwards Lifescience. Due to its value in automating tasks and reducing human error, the project grew into a flask server so that multiple users could interact with a gui vs a command line and update the hosted database.
-
-Each webpage has been designed to minimize human input and utilize python scripts that preferably read directly from files/databases which are also entered into the system via file inputs and not human input. Infact, all human entry has been removed; all pages are designed to only take data directly from one source and transfer to the next source.
-
-In addition to reducing human error and increasing efficiency due to automation of menial/repetitive tasks; due to the inability to gain api access to some of our external software bases, this program downloads files from the external software and recreates the database internally... Reports can be run and generated from this and is used for more accurate reporting.
+# Facilitator
 
 
 
-## Features
+## Getting started
 
-- Badge Automator: Recieves data from the CWP spreadsheet. Data is copied to the program (API Access not granted yet to automatically take the date), run through a python program which uppercases all the data, cleans the data for entry into the CCure system, and returns to a table for users to copy directly into the Ccure system (API Access to update the Ccure database not granted yet). Can copy/paste an unlimited amount of entries.
+To make it easy for you to get started with GitLab, here's a list of recommended next steps.
 
-- Moves Automator: Recieves forms via email which have 30+ fields and is generally difficult to read and translate data to the Moves spreadsheet. Users can copy an unlimited amount of emails and paste into the webpage. Python program analyzes the data, selects what is required, reformats data to requirements for the Moves spreadsheet and provides a table formatted properly for pasting.
+Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
 
-- Day Pass Automator: Features an interal database which stores all Day Passes generated via the Ccure system. The database stores when Badge Number, Badge ID, expiration date, last user, and last used date. Without this database (which requires an xml and csv upload) security would be unable to track day passes due to multiple seperate software tools they are using. (CCure and Traction Guest which do not communicate) This tool allows users to upload the xml which contains the card ID and expiration date, it checks the database to match the card ID to the Badge Number, if there is no Badge Number, the webpage displays a table to allow users to enter the number which is added to the database. Another form input allows users to upload a csv which includes data on who used the badge and when was the last time it was used, which is uploaded to the database to be tracked.
+## Add your files
 
-- Centerstone Reporting Tools: This is a multi-part reporting tool which takes data from our Centerstone software via a very large excel file. Uploads it to the database taking only the required fields, reformatting the dates (as they are in different formats) which allows us to analyze and preforms operations on later. Users can then generate reports and compare multiple dates (which are saved reports, saved whenever a user runs the report page with the date as the unique ID) to see changes and trends.
+- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
+- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+
+```
+cd existing_repo
+git remote add origin https://gitlab.com/tommyleecookse/facilitator.git
+git branch -M main
+git push -uf origin main
+```
+
+## Integrate with your tools
+
+- [ ] [Set up project integrations](https://gitlab.com/tommyleecookse/facilitator/-/settings/integrations)
+
+## Collaborate with your team
+
+- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
+- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
+- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
+- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
+- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+
+## Test and Deploy
+
+Use the built-in continuous integration in GitLab.
+
+- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
+- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
+- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
+- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
+- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+
+***
+
+# Editing this README
+
+When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+
+## Suggestions for a good README
+
+Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+
+## Name
+Choose a self-explaining name for your project.
+
+## Description
+Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+
+## Badges
+On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+
+## Visuals
+Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+
+## Installation
+Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+
+## Usage
+Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+
+## Support
+Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
 
 ## Roadmap
+If you have ideas for releases in the future, it is a good idea to list them in the README.
 
-- Complete Centerstone Reporting Tools
+## Contributing
+State if you are open to contributions and what your requirements are for accepting them.
 
-- Create Meeting and Events Automation Tools
+For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
 
-- Add an Event Log to track ongoing events for Users
+You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
 
+## Authors and acknowledgment
+Show your appreciation to those who have contributed to the project.
 
+## License
+For open source projects, say how it is licensed.
 
-## Used By
-
-This project is used by the following companies:
-
-- Edwards Lifesciences
-
-
-
-## Usage/Examples
- - Data received from Moves Email:
-    
-    Haley Whitehead has been added
-    Haley Whitehead
-    3/20/2024 10:29 AM
-    Requestor Name:	Haley Whitehead 
-    Name of Person Moving:	Haley Whitehead 
-    Employee Type::	Regular 
-    Preferred Move Date:	Friday, March 29, 2024 
-    Workplace Location Assignment:	Onsite 
-    If Shared - please add the name of Shared employee.:	 
-    Name of person who approved this move request::	Julie Estrada 
-    Extension::	1570 
-    Email Address::	julie_estrada@edwards.com 
-    Old Building:	T&D - Tech & Discovery 
-    If "Other," specify here::	 
-    Old Floor #::	Fl2 
-    Old Cube/Office #:	T2111B 
-    New Building:	T&D - Tech & Discovery 
-    If "Other," specify here::	 
-    New Floor #::	Fl2 
-    New Cube/Office #:	T2111C 
-    Will moving boxes need be be delivered?:	No 
-    If "Yes," please specify how many::	 
-    Move electronic equipment?:	Yes 
-    If "Yes," please select the types of equipment::	Monitors; Docking station; Phone 
-    If "other," please specify::	 
-    Is a new name plate needed?:	Yes 
-    Work Order #:	 
-    Employee ID:	414327 
-    Include any other special requests here::	 
-    Today's Date:	3/20/2024 
-
-- Formatted data that comes out:
-    - 03/29/2024	Haley	Whitehead	T&D	T2111B	T&D	T2111C	414327		0 Boxes just labels	
-## About Me
-I'm a Business and Comp Sci major working on becoming a Software/Full-Stack/Automation Engineer. My focus in all my jobs is analyzing reptitive/error prone tasks and functions and automating them. I add value to any and every company I have worked for due to going above and beyond my scope as I try to create more efficient processes for myself and for future employees in my role. I enjoy thinking creatively to try and solve problems especially and I especially enjoy automating menial tasks or tasks where human error is prone.
-
+## Project status
+If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
