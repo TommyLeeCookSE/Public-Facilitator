@@ -68,13 +68,15 @@ def process(filename):
 
 
 def processNonMatching(data):
-    conn = sqlite3.connect('facilities.db')
+    conn = sqlite3.connect(r'C:\Users\Tommy_Cook\OneDrive - Edwards Lifesciences\Documents\Scripts\Facilitator\WebPages\facilities.db')
     connCursor = conn.cursor()
     connCursor.execute("SELECT * FROM daypasses")
 
     for cardID,cardNumber in data.items():
         connCursor.execute("INSERT INTO daypasses (card_ID, card_Number) VALUES (?,?)", (cardID, cardNumber))
         conn.commit()
+    connCursor.execute("DELETE FROM daypasses WHERE card_number = ''")
+
     conn.close()
 
     
