@@ -64,7 +64,7 @@ def process(filename):
     #Remove file
     if len(non_matching_cards) == 0:
         os.remove(filename)
-    return matching_cards, non_matching_cards
+    return sorted(matching_cards, key=lambda card: card.card_number), sorted(non_matching_cards, key=lambda card: card.card_id)
 
 
 def processNonMatching(data):
