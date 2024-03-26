@@ -48,20 +48,24 @@
                     <th>Title</th>
                     <th>Agency Name</th>
                     <th>Cost Center</th>
+                    <th>Location</th>
                     <th>Supervisor Name</th>
+                    <th>Clearance</th>
+                    <th>Clearance</th>
+                    <th>Clearance</th>
+                    <th>Clearance</th>
                 </tr>
             </table>
         </div>
-        <button onclick = "resetTable('badgeTable','csvForm')">Clear</button>
     </div>
     
 
-    <form id="csvForm">
-        <label for="csvData">Paste CSV Data:</label>
-        <textarea id="csvData" rows="4" cols="100"></textarea>
+    <form id="badgeCsvForm" method="POST" action="/submit_badge_csv" style="width: 100%;">
+        <label for="badgeCsvForm">Paste CSV Data:</label>
+        <textarea id="badgeCsvForm" name="badgeCsvForm" rows="4" style="width: 100%;"></textarea>
+        <input type="submit" value="Submit">
     </form>
 
-    <script src="{{ url_for('static', filename='badgeScripts.js') }}"></script>
     {% endblock %}
 </body>
 </html>

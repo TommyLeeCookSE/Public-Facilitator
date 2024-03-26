@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from scripts import moveAutomator, daypassAutomator, tractionGuest, centerstoneReporterAutomator, centerstoneCsvInput, comparisonDrawer
+from scripts import moveAutomator, daypassAutomator, tractionGuest, centerstoneReporterAutomator, centerstoneCsvInput, comparisonDrawer, badgeAutomator
 from werkzeug.utils import secure_filename
 
 
@@ -12,6 +12,13 @@ def home():
 @app.route('/badge')
 def badgeCaser():
     return render_template('BadgeUpperCaserPage.html')
+
+@app.route('/submit_badge_csv', methods=['POST'])
+def submit_badge_csv():
+    data = request.form['badgeCsvForm']
+    result = badgeAutomator.process(data)
+    return result
+    # return render_template('BadgeUpperCaserPage', result=result)
 
 @app.route('/moves')
 def movesAutomator():
