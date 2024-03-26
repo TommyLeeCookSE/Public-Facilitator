@@ -17,7 +17,8 @@ def badgeCaser():
 def submit_badge_csv():
     data = request.form['badgeCsvForm']
     result = badgeAutomator.process(data)
-    return result
+    return jsonify(result)
+    # return result
     # return render_template('BadgeUpperCaserPage', result=result)
 
 @app.route('/moves')
