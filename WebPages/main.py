@@ -16,10 +16,9 @@ def badgeCaser():
 @app.route('/submit_badge_csv', methods=['POST'])
 def submit_badge_csv():
     data = request.form['badgeCsvForm']
-    result = badgeAutomator.process(data)
-    return jsonify(result)
-    # return result
-    # return render_template('BadgeUpperCaserPage', result=result)
+    employee_list = badgeAutomator.process(data)
+    return render_template('BadgeUpperCaserPage.html', employee_list=employee_list)
+    
 
 @app.route('/moves')
 def movesAutomator():

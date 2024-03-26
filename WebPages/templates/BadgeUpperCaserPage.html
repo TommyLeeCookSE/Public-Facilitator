@@ -47,7 +47,7 @@
                     <th>EID</th>
                     <th>Title</th>
                     <th>Agency Name</th>
-                    <th>Cost Center</th>
+                    <th>Department</th>
                     <th>Location</th>
                     <th>Supervisor Name</th>
                     <th>Clearance</th>
@@ -55,6 +55,22 @@
                     <th>Clearance</th>
                     <th>Clearance</th>
                 </tr>
+                {% for employee in employee_list %}
+                <tr>
+                    <td> {{ employee.fname}} </td>
+                    <td> {{ employee.lname}} </td>
+                    <td> {{ employee.EID}} </td>
+                    <td> {{ employee.title}} </td>
+                    <td> {{ employee.company}} </td>
+                    <td> {{ employee.dept_num}} </td>
+                    <td> {{ employee.supervisor_name}} </td>
+                    <td> {{ employee.location}} </td>
+                    <td> {{ employee.clearance1}} </td>
+                    <td> {{ employee.clearance2}} </td>
+                    <td> {{ employee.clearance3}} </td>
+                    <td> {{ employee.clearance4}} </td>
+                </tr>
+                {% endfor%}
             </table>
         </div>
     </div>

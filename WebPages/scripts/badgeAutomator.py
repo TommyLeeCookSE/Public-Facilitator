@@ -25,9 +25,11 @@ class Person:
 
     def check_company_name(self):
         if self.company in company_dict:
-            print(f'Company Name Provided: {self.company}\nCorrected Company Name: {company_dict[self.company]}')
-        else:
-            print(f'{self.company} is good.')
+            self.company = company_dict[self.company]
+
+
+    def check_dept_num(self):
+        self.dept_num = self.dept_num.lstrip('0123456789.- ')
 
 
 
@@ -39,9 +41,6 @@ def process(data):
     
     for i,item in enumerate(employee_list):
         employee_list[i].check_company_name()
-
-#Function that takes costCenter and returns without the numbers
-        
-    employee_dict_list = [vars(employee) for employee in employee_list]
+        employee_list[i].check_dept_num()
     
-    return employee_dict_list
+    return employee_list
