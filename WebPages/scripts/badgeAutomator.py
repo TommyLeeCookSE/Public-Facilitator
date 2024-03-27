@@ -1,11 +1,17 @@
 company_dict = {
-    "INFOSYS"               :   "INFOSYS LIMITED",
-    "Roth"                  :   "ROTH STAFFIGNG",
-    "Convergint"            :   "CONVERGINT",
-    "PACIFIC BUILDING"      :   "PACIFIC BUILDING CARE",
-    "DELOITTE CONSULTING"              :   "DELOITTE",
-    "MBO"                   :   "MBO PARTNERS",
-    "CLUNE"                 :   "CLUNE CONSTRUCTION",
+    "INFOSYS"                                       :   "INFOSYS LIMITED",
+    "ROTH STAFFING COMPANIES, L.P. DBA ULTIMATE"    :   "ROTH STAFFING",
+    "CONVERGINT TECHNOLOGIES LLC"                   :   "CONVERGINT",
+    "PACIFIC BUILDING"                              :   "PACIFIC BUILDING CARE",
+    "DELOITTE CONSULTING, LLP"                      :   "DELOITTE",
+    "MBO PARTNERS, INC"                             :   "MBO PARTNERS",
+    "CLUNE CONSTRUCTION COMPANY L.P"                :   "CLUNE CONSTRUCTION",
+    "REDBOCK LLC"                                   :   "REDBOCK",
+    "UNIVERSAL PROTECTION SERVICE, LP DBA"          :   "ALLIED UNIVERSAL",
+    "MINDLANCE, LLC"                                :   "MINDLANCE, LLC",
+    "BAXTER CREDIT UNION_UNITED STATES"             :   "BAXTER CREDIT UNION",
+    "KELLY SERVICES PR_PUERTO RICO"                 :   "KELLY SERVICES",
+    "MINDLANCE, LLC"                                :   "MINDLANCE"
     }
 
 class Person:
@@ -34,7 +40,7 @@ class Person:
 
 
 def process(data):
-    split = [line.upper().split('\t') for line in data.split('\n')]
+    split = [line.upper().strip().split('\t') for line in data.split('\n')]
     employee_list = []
     for i,item in enumerate(split):
        employee_list.append(Person(split[i][0],split[i][1],split[i][2],split[i][3],split[i][4],split[i][5],split[i][6]))
