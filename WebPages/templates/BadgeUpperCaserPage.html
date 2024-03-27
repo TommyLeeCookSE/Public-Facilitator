@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/mystyle.css">
-    <title>Badge Upper Caser</title>
-
-</head>
 <body>
 
     {% extends 'base.html' %}
@@ -20,16 +11,14 @@
         <div class="sheet-link"><a href = "https://edwardslifesciences-my.sharepoint.com/:x:/g/personal/jessica_nash_edwards_com/ERgXump9fbBIr3srr-nxhbEBJRmKkDNe_8Zhxv1Y-nEp8g?e=4%3AnaNDQP&fromShare=true&at=9&CID=184354CE-AB3E-4083-9830-2AADD01DB9B0&wdLOR=cE81B379F-4664-4446-8B60-2C76AE640C3C" target="_blank"><strong> Workforce Excel Spreadsheet</strong></a>
         </div>
         
-        
-        
         <div class ="instructions-video-container">
-            <div class instructions-video> 
+            <div class="instructions-video column"> 
                 <video width = "320" height = "240" controls>
                     <source src = "{{url_for('static', filename='BUC.mp4') }}" type = "video/mp4">
                     Your brower does not support the video tag.
                 </video>
             </div>
-            <div class="instructions">
+            <div class="instructions column">
                 <h2>How to Use:</h2>
                 <ol>
                     <li>Copy the information from the Contingent Workforce Spreadsheet linked above.</li>
