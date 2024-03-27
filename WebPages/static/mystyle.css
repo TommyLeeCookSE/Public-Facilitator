@@ -1,27 +1,3 @@
-table{
-    width:100%
-  } 
-th, td{
-  border: 0.5px solid black;
-}
-
-
-#csvData {
-    width: 100%;
-    box-sizing: border-box;
-}
-
-form {
-  margin-top: 35px; /* Adjust the value as desired */
-  
-}
-
-label {
-  display: inline-block;
-  width: 100%; 
-  text-align: left;
-  margin-bottom: 10px
-}
 .topnav{
   background-color: red;
   overflow: hidden;
@@ -50,20 +26,30 @@ label {
   display:flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
 }
 
 .instructions-video-container{
   display: flex;
   justify-content: space-between;
-  width: 200%
+  align-items:center;
+  width: 100%;
+  flex: 1;
+  flex-direction: row;
+}
+.column{
+  flex:1;
+  margin: 0 10px;
 }
 
 .instructions{
-  width: 50%
+  width: 100%;
+  flex:1;
 }
 
 .table-container{
-  width: 100%
+  width: 100%;
+  flex: 1;
 }
 
 
@@ -110,97 +96,61 @@ label {
 }
 
 
-/* Apply styles to the entire table */
-.styled-table {
+/* Apply styles to all tables */
+table {
+  width: 100%;
   border-collapse: collapse;
   margin: 25px 0;
   font-size: 0.9em;
   font-family: sans-serif;
   min-width: 400px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  width: 100%;
 }
 
 /* Zebra stripes for rows */
-.styled-table tr:nth-child(even) {
+table tr:nth-child(even) {
   background-color: grey;
   color: white;
 }
 
-.styled-table tr:nth-child(odd) {
+table tr:nth-child(odd) {
   background-color: white;
   color: black;
 }
 
-
 /* Horizontal dividers */
-.styled-table tr {
+table tr {
   border-bottom: 1px solid #ddd;
 }
 
 /* Hover effect */
-.styled-table tr:hover {
+table tr:hover {
   background-color: lightblue;
   color: white;
 }
 
 /* Equal width for table columns */
-.styled-table th,
-.styled-table td {
-  width: calc(100% / 3); /* Divide the available width equally among columns */
+table th,
+table td {
   text-align: center;
   padding: 8px;
   border: 1px solid #ddd;
   font-size: 1em;
 }
 
-.styled-table th {
+table th {
   background-color: red;
   color: white;
   text-transform: uppercase;
 }
 
+/*Adjust the badge table*/
 
-#comparison-table {
-  border-collapse: collapse;
-  margin: 25px 0;
-  font-size: 0.9em;
-  font-family: sans-serif;
-  min-width: 400px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  width: 100%;
+#badgeTable {
+  table-layout: fixed;
+  width:100%
 }
 
-#comparison-table tr:nth-child(even) {
-  background-color: grey;
-  color: white;
-}
-
-#comparison-table tr:nth-child(odd) {
-  background-color: white;
-  color: black;
-}
-
-#comparison-table tr {
-  border-bottom: 1px solid #ddd;
-}
-
-#comparison-table tr:hover {
-  background-color: lightblue;
-  color: white;
-}
-
-#comparison-table th,
-#comparison-table td {
-  width: calc(100% / 13);
-  text-align: center;
-  padding: 8px;
-  border: 1px solid #ddd;
-  font-size: 1em;
-}
-
-#comparison-table th {
-  background-color: red;
-  color: white;
-  text-transform: uppercase;
+#badgeTable th, #badgeTable td {
+  width: calc(100%/12);
 }
