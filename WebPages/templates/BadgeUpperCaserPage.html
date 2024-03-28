@@ -1,76 +1,87 @@
 <body>
+    {% extends 'ScriptTemplates.html' %}
+        {% block title %}
+            <title>Badge Automator</title>
+        {% endblock %}
 
-    {% extends 'base.html' %}
+        {% block content %}
 
-    {% block content %}    
+            {% block header %}
+                <div class="{{ page_title_class }}">
+                        <h1>Badge Automator</h1>
+                </div>
+            {% endblock %}
 
-    <div class="content">
-        <div class="page-title">
-            <h1>Badge Automator</h1>
-        </div>
-        <div class="sheet-link"><a href = "https://edwardslifesciences-my.sharepoint.com/:x:/g/personal/jessica_nash_edwards_com/ERgXump9fbBIr3srr-nxhbEBJRmKkDNe_8Zhxv1Y-nEp8g?e=4%3AnaNDQP&fromShare=true&at=9&CID=184354CE-AB3E-4083-9830-2AADD01DB9B0&wdLOR=cE81B379F-4664-4446-8B60-2C76AE640C3C" target="_blank"><strong> Workforce Excel Spreadsheet</strong></a>
+            {% block sheet_link %}
+                <div class="{{ sheet_link_class }}">
+                    <a href = "https://edwardslifesciences-my.sharepoint.com/:x:/g/personal/jessica_nash_edwards_com/ERgXump9fbBIr3srr-nxhbEBJRmKkDNe_8Zhxv1Y-nEp8g?e=4%3AnaNDQP&fromShare=true&at=9&CID=184354CE-AB3E-4083-9830-2AADD01DB9B0&wdLOR=cE81B379F-4664-4446-8B60-2C76AE640C3C" 
+                     target="_blank"><strong>Contingent Workforce SpreadSheet</a>
+                </div>
+            {% endblock %}
+
+            {% block instruction_container %}
+                <div class = "{{ instruction_container_class}}">
+                    <div class = "{{ instructions_video_container_class }}">
+                        <video class = "{{ video_class }}" controls>
+                        <source src = "{{url_for('static', filename='BUC.mp4') }}" type = "video/mp4">
+                        Your brower does not support the video tag.
+                        </video>
+                    </div>
+        
+                    <div class = "{{ instructions_text_container_class}}">
+                        <h2>How to Use:</h2>
+                        <ol>
+                            <li>Copy the information from the Contingent Workforce Spreadsheet linked above.</li>
+                            <li>Paste the information into the box below.</li>
+                            <li>Copy the table that populates and enter into CCURE.</li>
+                        </ol>
+                    </div>
+            </div>
+            {% endblock %}
+            
+            <div class="table-container">
+                <table id="badgeTable">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>EID</th>
+                        <th>Title</th>
+                        <th>Agency Name</th>
+                        <th>Department</th>
+                        <th>Location</th>
+                        <th>Supervisor Name</th>
+                        <th>Clearance</th>
+                        <th>Clearance</th>
+                        <th>Clearance</th>
+                        <th>Clearance</th>
+                    </tr>
+                    {% for employee in employee_list %}
+                    <tr>
+                        <td> {{ employee.fname}} </td>
+                        <td> {{ employee.lname}} </td>
+                        <td> {{ employee.EID}} </td>
+                        <td> {{ employee.title}} </td>
+                        <td> {{ employee.company}} </td>
+                        <td> {{ employee.dept_num}} </td>
+                        <td> {{ employee.supervisor_name}} </td>
+                        <td> {{ employee.location}} </td>
+                        <td> {{ employee.clearance1}} </td>
+                        <td> {{ employee.clearance2}} </td>
+                        <td> {{ employee.clearance3}} </td>
+                        <td> {{ employee.clearance4}} </td>
+                    </tr>
+                    {% endfor%}
+                </table>
+            </div>
         </div>
         
-        <div class ="instructions-video-container">
-            <div class="instructions-video column"> 
-                <video width = "320" height = "240" controls>
-                    <source src = "{{url_for('static', filename='BUC.mp4') }}" type = "video/mp4">
-                    Your brower does not support the video tag.
-                </video>
-            </div>
-            <div class="instructions column">
-                <h2>How to Use:</h2>
-                <ol>
-                    <li>Copy the information from the Contingent Workforce Spreadsheet linked above.</li>
-                    <li>Paste the information into the box below.</li>
-                    <li>Copy the table that populates and enter into CCURE.</li>
-                </ol>
-            </div>
-        </div>
-
-        <div class="table-container">
-            <table id="badgeTable">
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>EID</th>
-                    <th>Title</th>
-                    <th>Agency Name</th>
-                    <th>Department</th>
-                    <th>Location</th>
-                    <th>Supervisor Name</th>
-                    <th>Clearance</th>
-                    <th>Clearance</th>
-                    <th>Clearance</th>
-                    <th>Clearance</th>
-                </tr>
-                {% for employee in employee_list %}
-                <tr>
-                    <td> {{ employee.fname}} </td>
-                    <td> {{ employee.lname}} </td>
-                    <td> {{ employee.EID}} </td>
-                    <td> {{ employee.title}} </td>
-                    <td> {{ employee.company}} </td>
-                    <td> {{ employee.dept_num}} </td>
-                    <td> {{ employee.supervisor_name}} </td>
-                    <td> {{ employee.location}} </td>
-                    <td> {{ employee.clearance1}} </td>
-                    <td> {{ employee.clearance2}} </td>
-                    <td> {{ employee.clearance3}} </td>
-                    <td> {{ employee.clearance4}} </td>
-                </tr>
-                {% endfor%}
-            </table>
-        </div>
-    </div>
     
-
-    <form id="badgeCsvForm" method="POST" action="/submit_badge_csv" style="width: 100%;">
-        <label for="badgeCsvForm">Paste CSV Data:</label>
-        <textarea id="badgeCsvForm" name="badgeCsvForm" rows="4" style="width: 100%;"></textarea>
-        <input type="submit" value="Submit">
-    </form>
-
-    {% endblock %}
+        <form id="badgeCsvForm" method="POST" action="/submit_badge_csv" style="width: 100%;">
+            <label for="badgeCsvForm">Paste CSV Data:</label>
+            <textarea id="badgeCsvForm" name="badgeCsvForm" rows="4" style="width: 100%;"></textarea>
+            <input type="submit" value="Submit">
+        </form>
+    
+        
+        {% endblock %}
 </body>
-</html>

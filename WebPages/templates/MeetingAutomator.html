@@ -1,16 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/mystyle.css">
-    <title>HomePage</title>
-</head>
 <body>
-    {% extends 'base.html' %}
+{% extends 'ScriptTemplates.html' %}
+        {% block title %}
+            <title>Meeting & Events Automator</title>
+        {% endblock %}
 
-    {% block content %} 
-    {% endblock %}
-    
-</body>
-</html>
+        {% block content %}
+
+            {% block header %}
+                <div class="{{ page_title_class }}">
+                        <h1>Meeting & Events Automator</h1>
+                </div>
+            {% endblock %}
+
+            {% block instruction_container %}
+                <div class = "{{ instruction_container_class}}">
+                    <div class = "{{ instructions_video_container_class }}">
+                        <video class = "{{ video_class }}" controls>
+                        <source src = "{{url_for('static', filename='BUC.mp4') }}" type = "video/mp4">
+                        Your brower does not support the video tag.
+                        </video>
+                    </div>
+        
+                    <div class = "{{ instructions_text_container_class}}">
+                        <h2>How to Use:</h2>
+                        <ol>
+                            <li>Copy the information from the Contingent Workforce Spreadsheet linked above.</li>
+                            <li>Paste the information into the box below.</li>
+                            <li>Copy the table that populates and enter into CCURE.</li>
+                        </ol>
+                    </div>
+            </div>
+            {% endblock %}
+        {% endblock %}
+        </body>

@@ -26,7 +26,7 @@ def movesAutomator():
 
 @app.route('/moveAutomatorSubmit', methods=['POST'])
 def moveAutomatorSubmit():
-    data = request.form['csvData']  
+    data = request.form['moveCsvData']  
     result = moveAutomator.process(data)  
     return render_template('MovesAutomator.html', processed_data=result, processed = True)
 

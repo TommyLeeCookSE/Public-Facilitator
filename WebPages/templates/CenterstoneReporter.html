@@ -1,41 +1,38 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../static/mystyle.css">
-        <title>Centerstone Reporter</title>
-    </head>
 <body>
-    {% extends 'base.html' %}
+    {% extends 'ScriptTemplates.html' %}
+        {% block title %}
+            <title>Centerstone Reporter</title>
+        {% endblock %}
 
-    {% block content %}
-    
-    <div class="content">
-        <div class="page-title">
-            <h1>Centerstone Reporter</h1>
-        </div>
+        {% block content %}
+
+            {% block header %}
+                <div class="{{ page_title_class }}">
+                        <h1>Centerstone Reporter</h1>
+                </div>
+            {% endblock %}
+
+            {% block instruction_container %}
+                <div class = "{{ instruction_container_class}}">
+                    <div class = "{{ instructions_video_container_class }}">
+                        <video class = "{{ video_class }}" controls>
+                        <source src = "{{url_for('static', filename='CSR.mp4') }}" type = "video/mp4">
+                        Your brower does not support the video tag.
+                        </video>
+                    </div>
         
-        <div class ="instructions-video-container">
-            <div class instructions-video> 
-                <video width = "320" height = "240" controls>
-                    <source src = "{{url_for('static', filename='CSR.mp4') }}" type = "video/mp4">
-                    Your brower does not support the video tag.
-                </video>
+                    <div class = "{{ instructions_text_container_class}}">
+                        <h2>How to Use:</h2>
+                        <ol>
+                            <li>Go to Centerstone Website and download All Work Orders</li>
+                            <li>Upload list and press Process</li>
+                            <li>Screenshot contents and send to Debra/Alex/Asgard/Facilities</li>
+                        </ol>
+                    </div>
             </div>
-            <div class="instructions">
-                <h2>How to Use:</h2>
-                <ol>
-                    <li>Go to Centerstone Website and download All Work Orders</li>
-                    <li>Upload list and press Process</li>
-                    <li>Screenshot contents and send to Debra/Alex/Asgard/Facilities</li>
-                </ol>
-            </div>
-        </div>
-    </div>
+            {% endblock %}
 
-
-    {% if processedData is defined %}
+            {% if processedData is defined %}
     <div class="table-container">
         <h2>Work Order Totals || {{ processedData[0] }}</h2>
         <table class="styled-table">
@@ -94,10 +91,6 @@
         </table>
     </div>
     {% endif %}
-    
-    
-<!-- <script src="{{ url_for('static', filename='daypassScripts.js') }}"></script> -->
-{% endblock %}
+            
+        {% endblock %}
 </body>
-</html>
-
