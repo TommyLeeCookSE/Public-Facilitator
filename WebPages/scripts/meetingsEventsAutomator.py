@@ -1,5 +1,11 @@
+import sqlite3
 #Open database
+def load_work_orders():
+    db_path = r"C:\Users\Tommy_Cook\OneDrive - Edwards Lifesciences\Documents\Scripts\Facilitator\WebPages\facilities.db"
 
+    with sqlite3.connect(db_path) as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM work_order_table WHERE status = Assigned*")
 #Pull all work orders that are meeting requests
 
 #Return information to webpage with Tech Name, WO Time, WO Date, and WO Description
