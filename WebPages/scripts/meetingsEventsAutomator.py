@@ -1,7 +1,7 @@
 import sqlite3
 #Open database
 def load_work_orders():
-    db_path = r"C:\Users\Tommy_Cook\OneDrive - Edwards Lifesciences\Documents\Scripts\Facilitator\WebPages\facilities.db"
+    db_path = r"WebPages/facilities.db"
 
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()

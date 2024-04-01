@@ -21,7 +21,7 @@ def process(filename):
             self.last_used_by = last_used_by
             self.last_used_date = last_used_date
 
-    conn = sqlite3.connect(r'C:\Users\Tommy_Cook\OneDrive - Edwards Lifesciences\Documents\Scripts\Facilitator\WebPages\facilities.db') #Connected to daypass db
+    conn = sqlite3.connect(r'WebPages/facilities.db') #Connected to daypass db
     connCursor = conn.cursor()
     connCursor.execute("SELECT * FROM daypasses")
     rows = connCursor.fetchall()

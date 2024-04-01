@@ -10,7 +10,7 @@ def saveToWorkOrderTable(filename):
    
    #Open the file
     df = pd.read_csv(filename)
-    conn = sqlite3.connect(r'C:\Users\Tommy_Cook\OneDrive - Edwards Lifesciences\Documents\Scripts\Facilitator\WebPages\facilities.db')
+    conn = sqlite3.connect(r'WebPages/facilities.db')
     cursor = conn.cursor()
 
     #Read the file line by lane

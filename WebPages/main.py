@@ -108,7 +108,8 @@ def processCenterstoneCsvInput():
     filename = secure_filename(file.filename)
     file.save(filename)
     centerstoneCsvInput.saveToWorkOrderTable(filename)
-    return render_template('centerstoneCsvInput.html')
+    result = centerstoneReporterAutomator.process()
+    return render_template('CenterstoneReporter.html', processedData=result)
 
 @app.route('/meetingAutomator')
 def meetingAutomator():

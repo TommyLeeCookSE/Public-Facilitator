@@ -7,7 +7,7 @@ def tractionGuestUpload(filename):
     update_name_query = "UPDATE daypasses SET last_used_by_name = ? WHERE card_id = ?"
     update_date_query = "UPDATE daypasses SET last_used_date = ? WHERE card_id = ?"
     
-    conn = sqlite3.connect(r'C:\Users\Tommy_Cook\OneDrive - Edwards Lifesciences\Documents\Scripts\Facilitator\WebPages\facilities.db',timeout=300) #Connected to daypass db
+    conn = sqlite3.connect(r'WebPages/facilities.db',timeout=300) #Connected to daypass db
     connCursor = conn.cursor()
 
     for index, row in tractionGuestRawDataDF.iterrows():
