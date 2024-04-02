@@ -52,7 +52,7 @@ def process():
                 print(f'Total Current PM: {totalCurrentPM}')
 
                 #Total Past Due PM Counter
-                cursor.execute("SELECT COUNT(*) FROM work_order_table WHERE status LIKE 'Assigned*' AND is_pm = 0 AND completion_due < ?",(today,))
+                cursor.execute("SELECT COUNT(*) FROM work_order_table WHERE status LIKE 'Assigned*' AND is_pm = 1 AND completion_due < ?",(today,))
                 totalPastPM = cursor.fetchone()[0]
                 print(f'Total Past Due PM Work Order: {totalPastPM}')
                 print()

@@ -187,6 +187,15 @@ table th {
   width: calc(100%/12);
 }
 
+#reporter-table {
+  table-layout: fixed;
+  width:100%
+}
+
+#reporter th, #reporter td {
+  width: calc(100%/3);
+}
+
 body {
   font-family: Arial, sans-serif;
 }
