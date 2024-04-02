@@ -19,6 +19,7 @@ company_dict = {
     "PRIVATE CAR WASH_UNITED STATES"                :   "PRIVATE CAR WASH",
     "MAGNIT, LLC"                                   :   "MAGNIT",
     "PLANET PHARMA GROUP, LLC"                      :   "PLANET PHARMA",
+    "BON APPETIT MANAGEMENT COMPANY"                :   "BON APPETIT",
 
     }
 
