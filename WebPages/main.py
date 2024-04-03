@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from scripts import moveAutomator, daypassAutomator, tractionGuest, centerstoneReporterAutomator, centerstoneCsvInput, comparisonDrawer, badgeAutomator
+from scripts import moveAutomator, daypassAutomator, tractionGuest, centerstoneReporterAutomator, centerstoneCsvInput, comparisonDrawer, badgeAutomator, quarterlyReport
 from werkzeug.utils import secure_filename
 
 
@@ -114,6 +114,22 @@ def processCenterstoneCsvInput():
 @app.route('/meetingAutomator')
 def meetingAutomator():
     return render_template('MeetingAutomator.html')
+
+@app.route('/display_quarterly_report')
+def display_quarterly_report():
+    return render_template('QuarterlyReport.html')
+
+@app.route('/process_quarterly_report', methods=['POST'])
+def process_quarterly_report():
+    form_data = request.form
+
+    quarterlyReport.queryDatabase(
+        start_date=form_data.get('start_date'),
+        end_date=form_data.get('end_date')
+    )
+
+    return render_template('QuarterlyReport.html', data=quarterlyReport.final_list)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

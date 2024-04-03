@@ -3,6 +3,7 @@ company_dict = {
     "ROTH STAFFING COMPANIES, L.P. DBA ULTIMATE"    :   "ROTH STAFFING",
     "CONVERGINT TECHNOLOGIES LLC"                   :   "CONVERGINT",
     "PACIFIC BUILDING"                              :   "PACIFIC BUILDING CARE",
+    "PACIFIC BUILDING CARE INC DBA"                 :   "PACIFIC BUILDING CARE",
     "DELOITTE CONSULTING, LLP"                      :   "DELOITTE",
     "MBO PARTNERS, INC"                             :   "MBO PARTNERS",
     "CLUNE CONSTRUCTION COMPANY L.P"                :   "CLUNE CONSTRUCTION",
@@ -20,6 +21,7 @@ company_dict = {
     "MAGNIT, LLC"                                   :   "MAGNIT",
     "PLANET PHARMA GROUP, LLC"                      :   "PLANET PHARMA",
     "BON APPETIT MANAGEMENT COMPANY"                :   "BON APPETIT",
+    "PACER STAFFING LLC DBA 360 TALENT SOLUTIONS"   :   "360 TALENT SOLUTIONS",
 
     }
 

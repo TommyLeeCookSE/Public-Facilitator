@@ -1,0 +1,88 @@
+<body>
+    {% extends 'ScriptTemplates.html' %}
+        {% block title %}
+            <title>Quarterly Report</title>
+        {% endblock %}
+
+        {% block content %}
+
+            {% block header %}
+                <div class="{{ page_title_class }}">
+                        <h1>Quarterly Report</h1>
+                </div>
+            {% endblock %}
+
+            {% block instruction_container %}
+                <div class = "{{ instruction_container_class}}">
+                    <div class = "{{ instructions_video_container_class }}">
+                        <video class = "{{ video_class }}" controls>
+                        <source src = "{{url_for('static', filename='MA.mp4') }}" type = "video/mp4">
+                        Your brower does not support the video tag.
+                        </video>
+                    </div>
+        
+                    <div class = "{{ instructions_text_container_class}}">
+                        <h2>How to Use:</h2>
+                        <ol>
+                            <li>In Progress</li>
+                        </ol>
+                    </div>
+            </div>
+            {% endblock %}
+            
+            {% if data %}
+                <h1>Quarterly Report</h1>
+                <table class="styled-table">
+                    <tr>
+                        <th>1</th>
+                        <th>1</th>
+                        <th>1</th>
+                        <th>1</th>
+                        <th>1</th>
+                        <th>1</th>
+                        <th>1</th>
+                        <th>1</th>
+                        <th>1</th>
+                        <th>1</th>
+                        <th>1</th>
+                        <th>1</th>
+                    </tr>
+                    {% for list in data %}
+                        <tr>
+                        {% for item in list %}
+                        <td>{{ item }}</td>
+                        {% endfor %}
+                    {% endfor %}
+                        </tr>
+                </table>
+            {% endif %}
+
+
+            
+            <form action="/process_quarterly_report", method="post">
+                <label for="start_date">Start Date:</label>
+                <input type="date" id="start_date" name="start_date">
+
+                <label for="end_date">End Date:</label>
+                <input type="date" id="end_date" name="end_date">
+                
+
+                <input type="submit">
+              </form>
+            
+            
+        {% endblock %}
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
