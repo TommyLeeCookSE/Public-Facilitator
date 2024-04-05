@@ -22,6 +22,7 @@ company_dict = {
     "PLANET PHARMA GROUP, LLC"                      :   "PLANET PHARMA",
     "BON APPETIT MANAGEMENT COMPANY"                :   "BON APPETIT",
     "PACER STAFFING LLC DBA 360 TALENT SOLUTIONS"   :   "360 TALENT SOLUTIONS",
+    "VWR INTERNATIONAL INC."                        :   "VWR",
 
     }
 

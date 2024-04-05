@@ -169,7 +169,12 @@ def queryDatabase(date1, date2):
         result = cursor.fetchall()
 
         process_query_data(result)
-        
+    
+    for item in final_list:
+        print(vars(item))
+    
+    
+    #Return final_list
         
 
 def process_query_data(result):
@@ -193,11 +198,8 @@ def process_query_data(result):
                   current_value = getattr(quarterly_report_object, attr_name)
                   setattr(quarterly_report_object, attr_name, current_value +1)
 
-
-    # print(vars(quarterly_report_object))
-
     final_list.append(quarterly_report_object)
-#Return final_list
+
          
 
 
