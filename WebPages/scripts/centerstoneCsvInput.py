@@ -4,9 +4,6 @@ from dateutil import parser
 
 #Process every line in this file, each line will be edited and then comitted, no saving to list or anything, we may split into list in line to manipulate
 def saveToWorkOrderTable(filename):
-
-    #Create variables to store the data coming in from the file
-    woNum = laborName = requestedBy = woStatus = completionDue = completionDate = building = locationNumber = description = workOrderType = isPm = creationDate = ""
    
    #Open the file
     df = pd.read_csv(filename)
