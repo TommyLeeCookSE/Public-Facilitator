@@ -197,7 +197,7 @@ table th {
 }
 
 #quarterly-report th, #quarterly-report td {
-  width: calc(100%/39);
+  width: calc(100%/43);
   overflow: hidden; /* Ensures content does not spill out of the cell */
   text-overflow: ellipsis; /* Shows '...' for overflowing content */
   white-space: nowrap; /* Prevents the content from breaking into multiple lines */

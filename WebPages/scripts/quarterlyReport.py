@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, re
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 
@@ -53,7 +53,11 @@ class Quarterly_Report:
                 alton_1921=0,
                 duryea_1091=0,
                 anton=0,
-                kettering=0
+                kettering=0,
+                mechanical=0,
+                plumbing=0,
+                electrical=0,
+                misc=0
                 ):
             
                 self.date = date
@@ -95,6 +99,19 @@ class Quarterly_Report:
                 self.duryea_1091 = duryea_1091
                 self.anton = anton
                 self.kettering = kettering
+                self.mechanical=mechanical
+                self.plumbing=plumbing
+                self.electrical=electrical
+                self.misc=misc
+
+
+mechanical_list = ["Generators - Generators","Air Compressors - Air Compressors", "Meeting Request - HVAC Request for Meeti","Temperature* - Too Hot", "Temperature* - Too Cold"]
+
+plumbing_list = ["Plumbing - Add/Change","Plumbing - Floor Drains","Plumbing - Miscellaneous", "Plumbing - Sink/Toilet Leak - Please cal", "Plumbing - Water Won t Turn Off - Please", "Plumbing -",
+                 "Restrooms -","Restrooms - Toilet or Urinal Issue", "Restrooms - Sink Issue", "Restrooms - Restock Supplies", "Restrooms - Miscellaneous"]
+
+electrical_prefix="Electrical -"
+
 
 building_to_attr = {
     "1091 Duryea - Warehouse": "duryea_1091",
@@ -171,11 +188,7 @@ def queryDatabase(date1, date2):
             cursor.execute("SELECT creation_date, is_pm, work_order_type, building FROM work_order_table WHERE creation_date >= ? AND creation_date <= ?", (dates[0], dates[1]))
             result = cursor.fetchall()
 
-            process_query_data(result,dates[0])
-    
-    for item in final_list:
-        print(vars(item))
-    
+            process_query_data(result,dates[0])    
     
     return final_list
         
@@ -190,34 +203,37 @@ def process_query_data(result,date):
         quarterly_report_object.date = date
     for workorder in temp_list:
         quarterly_report_object.total_wo += 1
+
         if workorder.is_pm == "1":
             quarterly_report_object.total_pm +=1
+
         if "Meeting Request -" in workorder.work_order_type:
             quarterly_report_object.total_event +=1
+
+        if re.search(r'Generators -', workorder.work_order_type) or re.search(r'Air Compressors -', workorder.work_order_type) or re.search(r'Meeting Request - HVAC', workorder.work_order_type) or re.search(r'Temperature* -', workorder.work_order_type):
+            quarterly_report_object.mechanical +=1
+
+        if re.search(r'Plumbing -', workorder.work_order_type) or re.search(r'Restrooms -', workorder.work_order_type):
+            quarterly_report_object.plumbing +=1
+            
+        if re.search(r'Electrical -', workorder.work_order_type):
+            quarterly_report_object.electrical +=1
+        
+        if re.search(r'Misc. Work Request', workorder.work_order_type):
+            quarterly_report_object.misc +=1
+
         if workorder.building in building_to_attr:
              attr_name = building_to_attr[workorder.building]
              if hasattr(quarterly_report_object, attr_name):
                   current_value = getattr(quarterly_report_object, attr_name)
                   setattr(quarterly_report_object, attr_name, current_value +1)
 
+    print(f"Electrical: {quarterly_report_object.electrical}")
+    print(f"Misc: {quarterly_report_object.misc}")
+    print(f"Plumbing: {quarterly_report_object.plumbing}")
+    print(f"Mechanical: {quarterly_report_object.mechanical}")
     final_list.append(quarterly_report_object)
-        #Need to include 
-        # 1.Mechanical = All HVAC  ( generators, Air compressors, HVAC, Temperature 
-            # •	Generators – Generators
-            # •	Air Compressors - Air Compressors
-            # •	Meeting Request - HVAC Request for Meeti 
-            # •	Temperature* - Too Hot 
-            # •	Temperature* - Too Cold
-    
-        # 2.	Plumbing and Restrooms 
-            # •	Plumbing –
-            # •	Restrooms –
-    
-        # 3.	Electrical 
-            # •	Electrical –
-    
-        # 4.	Misc 
-        # •	Misc. Work Request - Misc. Work Request
+        
 
 
 
