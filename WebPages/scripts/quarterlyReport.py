@@ -2,7 +2,6 @@ import sqlite3
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 
-
 final_list = []
 
 class Work_Order:
@@ -51,7 +50,7 @@ class Quarterly_Report:
                 ps2=0,
                 ps3=0,
                 alton_1901=0,
-                alton_1902=0,
+                alton_1921=0,
                 duryea_1091=0,
                 anton=0,
                 kettering=0
@@ -92,7 +91,7 @@ class Quarterly_Report:
                 self.ps2 = ps2
                 self.ps3 = ps3
                 self.alton_1901 = alton_1901
-                self.alton_1902 = alton_1902
+                self.alton_1921 = alton_1921
                 self.duryea_1091 = duryea_1091
                 self.anton = anton
                 self.kettering = kettering
@@ -103,7 +102,7 @@ building_to_attr = {
     "17192 Daimler - Warehouse": "daimler_17192",
     "1821 Kettering": "kettering",
     "1901 Alton": "alton_1901",
-    "1921 Alton": "alton_1902",
+    "1921 Alton": "alton_1921",
     "3009 Daimler": "daimler_3009",
     "535 Anton": "anton",
     "Community Center": "community",
@@ -136,6 +135,7 @@ building_to_attr = {
 }
 
 def queryDatabase(date1, date2):
+    final_list.clear()
     start_date = datetime.strptime(date1,'%Y-%m-%d')
     end_date = datetime.strptime(date2,'%Y-%m-%d')
     month_1 = start_date
@@ -160,33 +160,35 @@ def queryDatabase(date1, date2):
     month_2_prev_year=month_2_prev_year.strftime('%Y-%m-%d')
     month_3_prev_year=month_3_prev_year.strftime('%Y-%m-%d')
     
+    date_list = [(start_date,end_date),                     (month_1,month_2),                      (month_2,month_3),                      (month_3,end_date),
+             (start_date_prev_year,end_date_prev_year), (month_1_prev_year,month_2_prev_year),  (month_2_prev_year,month_3_prev_year),  (month_3_prev_year,end_date_prev_year)]
 
 
     with sqlite3.connect(r'WebPages/facilities.db') as conn:
         cursor = conn.cursor()
-        #Need to use a forloop here instead, iterate through all the dates which will be in a list
-        cursor.execute("SELECT creation_date, is_pm, work_order_type, building FROM work_order_table WHERE creation_date > ? AND creation_date < ?", (start_date, end_date))
-        result = cursor.fetchall()
+        for dates in date_list:
+             
+            cursor.execute("SELECT creation_date, is_pm, work_order_type, building FROM work_order_table WHERE creation_date >= ? AND creation_date <= ?", (dates[0], dates[1]))
+            result = cursor.fetchall()
 
-        process_query_data(result)
+            process_query_data(result,dates[0])
     
     for item in final_list:
         print(vars(item))
     
     
-    #Return final_list
+    return final_list
         
 
-def process_query_data(result):
+def process_query_data(result,date):
     temp_list = []
     quarterly_report_object = Quarterly_Report()
 
     for row in result:
         temp_list.append(Work_Order(*row))
         
-    
+        quarterly_report_object.date = date
     for workorder in temp_list:
-        #need to figure out how t get the right date, probably pass in date and use that
         quarterly_report_object.total_wo += 1
         if workorder.is_pm == "1":
             quarterly_report_object.total_pm +=1
@@ -199,8 +201,24 @@ def process_query_data(result):
                   setattr(quarterly_report_object, attr_name, current_value +1)
 
     final_list.append(quarterly_report_object)
+        #Need to include 
+        # 1.Mechanical = All HVAC  ( generators, Air compressors, HVAC, Temperature 
+            # •	Generators – Generators
+            # •	Air Compressors - Air Compressors
+            # •	Meeting Request - HVAC Request for Meeti 
+            # •	Temperature* - Too Hot 
+            # •	Temperature* - Too Cold
+    
+        # 2.	Plumbing and Restrooms 
+            # •	Plumbing –
+            # •	Restrooms –
+    
+        # 3.	Electrical 
+            # •	Electrical –
+    
+        # 4.	Misc 
+        # •	Misc. Work Request - Misc. Work Request
 
-         
 
 
-queryDatabase('2024-01-01', '2024-03-31')
+# queryDatabase('2024-01-01', '2024-03-31')

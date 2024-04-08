@@ -23,6 +23,7 @@ company_dict = {
     "BON APPETIT MANAGEMENT COMPANY"                :   "BON APPETIT",
     "PACER STAFFING LLC DBA 360 TALENT SOLUTIONS"   :   "360 TALENT SOLUTIONS",
     "VWR INTERNATIONAL INC."                        :   "VWR",
+    "COAST PACIFIC BUILDERS, INC."                  :   "COAST PACIFIC BUILDERS"
 
     }
 
