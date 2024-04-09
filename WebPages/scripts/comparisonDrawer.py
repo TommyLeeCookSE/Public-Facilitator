@@ -13,10 +13,6 @@ def pullFromDatabase():
     return(reversed(rows))
 
 
-## Function that takes the 2 dates, selects everything from the db where the 2 dates =
-## Have the 2 dates in a list and then subtract the first from the second on everything but the date and have that as the third item in the row
-##Return the list to main
-
 def pullAndCompareDates(listOfDates):
     
     finalListOfDates = []
@@ -29,7 +25,7 @@ def pullAndCompareDates(listOfDates):
     
     temp_list = []
     for x in range(1, len(finalListOfDates[0])):
-        temp_list.append(finalListOfDates[0][x] - finalListOfDates[1][x])
+        temp_list.append(abs(finalListOfDates[0][x] - finalListOfDates[1][x]))
     temp_list.insert(0,"Difference")
     finalListOfDates.append(temp_list)
     conn.close()

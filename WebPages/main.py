@@ -127,7 +127,7 @@ def process_quarterly_report():
     form_data.get('start_date'),
     form_data.get('end_date')
 )
-
+    
     return render_template('QuarterlyReport.html', data=quarterlyReport.final_list)
 
 
