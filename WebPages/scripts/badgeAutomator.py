@@ -24,7 +24,14 @@ company_dict = {
     "PACER STAFFING LLC DBA 360 TALENT SOLUTIONS"   :   "360 TALENT SOLUTIONS",
     "VWR INTERNATIONAL INC."                        :   "VWR",
     "COAST PACIFIC BUILDERS, INC."                  :   "COAST PACIFIC BUILDERS",
-    "9EDGE, INC._UNITED STATES"                     :   "9 EDGE"
+    "9EDGE, INC._UNITED STATES"                     :   "9 EDGE",
+    "TALENTBURST, INC."                             :   "TALENTBURST",
+    "BEACON HILL STAFFING GROUP, INC."              :   "BEACON HILL STAFFING GROUP",
+    "PWC_UNITED STATES"                             :   "PWC",
+    "J.A.STOWELL CONSTRUCTION_UNITED STATES"        :   "J.A. STOWELL",
+    "TANGRAM INTERIORS_UNITED STATES"               :   "TANGRAM",
+    "COMPUNNEL SOFTWARE GROUP, INC"                 :   "COMPUNNEL SOFTWARE GROUP",
+
     }
 
 class Person:
