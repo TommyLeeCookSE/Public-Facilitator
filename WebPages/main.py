@@ -131,16 +131,18 @@ def process_quarterly_report():
 
 @app.route('/display_walkin_tracker.html')
 def display_walking_tracker():
-    result = walkinTracker.walkin_table_info()
-    return render_template('WalkInPage.html', data = result)
+    result, counts = walkinTracker.walkin_table_info()
+    security_count, non_security_count = counts
+    return render_template('WalkInPage.html', data = result,security_count=security_count, non_security_count=non_security_count)
 
 @app.route('/submit_walkin_form', methods = ['POST'])
 def process_walkin():
     form_data = request.form
     selected_value = form_data.get('tracker')
     walkinTracker.process_walkin(selected_value)
-    result = walkinTracker.walkin_table_info()
-    return render_template("WalkInPage.html", data = result)
+    result, counts = walkinTracker.walkin_table_info()
+    security_count, non_security_count = counts
+    return render_template("WalkInPage.html", data = result,security_count=security_count, non_security_count=non_security_count)
 
 
 

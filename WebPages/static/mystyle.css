@@ -29,6 +29,9 @@
 .page-title h1 {
   margin: 0;
 }
+h1,h2{
+  text-align:center;
+}
 
 .sheet_link  {
   display: block;
@@ -55,8 +58,8 @@
 }
 
 .column{
-  flex:1;
-  margin: 0px 80px;
+  display: flex;
+  flex-direction: row;
 }
 
 .video {
@@ -161,17 +164,18 @@ table tr:hover {
   color: white;
 }
 
-/* Equal width for table columns */
 table th,
 table td {
   text-align: center;
+  font-weight: bold;
+  font-size: 10em;
   padding: 8px;
   border: 1px solid #ddd;
-  font-size: 1em;
+  font-size: 1.5em;
 }
 
 table th {
-  background-color: red;
+  background-color: black;
   color: white;
   text-transform: uppercase;
 }
@@ -203,13 +207,48 @@ table th {
   white-space: nowrap; /* Prevents the content from breaking into multiple lines */
 }
 
+
+
+#walkinForm input[type="radio"]{
+  margin: 0.5em;
+  transform: scale(1.5);
+}
+
+#walkinForm label {
+  margin: 0.5em;
+}
+
+#walkin-table th {
+  table-layout: fixed;
+  width: calc(100%/3);
+}
+
+
+#walkinForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.radio-option{
+  display: flex;
+  align-items: center;
+}
+.radio-option label {
+  min-width: 200px;
+}
+
+.radio-option input[type="radio"] {
+  margin-right: 10px;
+}
+
 body {
   font-family: Arial, sans-serif;
 }
 
 form {
   width: 100%;
-  max-width: 600px;
+  box-sizing: border-box; /* Add this line */
   margin: 0 auto;
   padding: 20px;
   background-color: #f7f7f7;
