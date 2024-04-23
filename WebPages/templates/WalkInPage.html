@@ -1,0 +1,51 @@
+<body>
+    {% extends 'ScriptTemplates.html' %}
+    {% block title %}
+        <title>Walk In Tracker</title>
+    {% endblock %}
+
+    {% block content %}
+        {% block header %}
+        <div class="{{ page_title_class }}">
+            <h1>Walk In Tracker</h1>
+        </div>
+        {% endblock %}
+
+        <form id = "walkinForm" method="POST" action="/submit_walkin_form" style="width: 100%;">
+            <input type="radio" id="newBadge" name="tracker" value="New Badge">
+            <label for="newBadge">Badge: New</label>
+            <input type="radio" id="lostBadge" name="tracker" value="Lost Badge">
+            <label for="lostBadge">Badge: Lost</label>
+            <input type="radio" id="brokenBadge" name="tracker" value="Broken Badge">
+            <label for="brokenBadge">Badge: Broken</label>
+            <input type="radio" id="miscBadge" name="tracker" value="Misc Badge">
+            <label for="miscBadge">Badge: Misc</label>
+            <input type="radio" id="nonSecurity" name="tracker" value="Non Security">
+            <label for="nonSecurity">Non Security</label>
+
+            <input type="submit" value="Submit">
+        </form>
+        {% if data %}
+        <div class="table-container">
+            <h2>Walk In Table</h2>
+            <table id="walkin-table">
+                <tr>
+                    <th>Date</th>
+                    <th>Security</th>
+                    <th>Reason</th>
+                </tr>
+                {%for item in data%}
+                </tr>
+                    <td>{{ item.date }}</td>
+                    <td>{{ item.security }}</td>
+                    <td>{{ item.value }}</td>
+                </tr>
+                {% endfor %}
+                
+            </table>
+        
+            
+        {% endif %}
+
+    {% endblock %}
+</body>

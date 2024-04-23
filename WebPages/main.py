@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from scripts import moveAutomator, daypassAutomator, tractionGuest, centerstoneReporterAutomator, centerstoneCsvInput, comparisonDrawer, badgeAutomator, quarterlyReport
+from scripts import moveAutomator, daypassAutomator, tractionGuest, centerstoneReporterAutomator, centerstoneCsvInput, comparisonDrawer, badgeAutomator, quarterlyReport, walkinTracker
 from werkzeug.utils import secure_filename
 
 
@@ -126,9 +126,22 @@ def process_quarterly_report():
     quarterlyReport.queryDatabase(
     form_data.get('start_date'),
     form_data.get('end_date')
-)
-    
+)    
     return render_template('QuarterlyReport.html', data=quarterlyReport.final_list)
+
+@app.route('/display_walkin_tracker.html')
+def display_walking_tracker():
+    result = walkinTracker.walkin_table_info()
+    return render_template('WalkInPage.html', data = result)
+
+@app.route('/submit_walkin_form', methods = ['POST'])
+def process_walkin():
+    form_data = request.form
+    selected_value = form_data.get('tracker')
+    walkinTracker.process_walkin(selected_value)
+    result = walkinTracker.walkin_table_info()
+    return render_template("WalkInPage.html", data = result)
+
 
 
 if __name__ == '__main__':
