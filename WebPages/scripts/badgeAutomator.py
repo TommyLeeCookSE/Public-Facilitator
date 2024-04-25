@@ -1,37 +1,55 @@
-company_dict = {
-    "INFOSYS"                                       :   "INFOSYS LIMITED",
-    "ROTH STAFFING COMPANIES, L.P. DBA ULTIMATE"    :   "ROTH STAFFING",
-    "CONVERGINT TECHNOLOGIES LLC"                   :   "CONVERGINT",
-    "PACIFIC BUILDING"                              :   "PACIFIC BUILDING CARE",
-    "PACIFIC BUILDING CARE INC DBA"                 :   "PACIFIC BUILDING CARE",
-    "DELOITTE CONSULTING, LLP"                      :   "DELOITTE",
-    "MBO PARTNERS, INC"                             :   "MBO PARTNERS",
-    "CLUNE CONSTRUCTION COMPANY L.P"                :   "CLUNE CONSTRUCTION",
-    "REDBOCK LLC"                                   :   "REDBOCK",
-    "UNIVERSAL PROTECTION SERVICE, LP"              :   "ALLIED UNIVERSAL",
-    "UNIVERSAL PROTECTION SERVICE, LP DBA"          :   "ALLIED UNIVERSAL",
-    "MINDLANCE, LLC"                                :   "MINDLANCE",
-    "MINDLANCE, INC."                               :   "MINDLANCE",
-    "BAXTER CREDIT UNION_UNITED STATES"             :   "BAXTER CREDIT UNION",
-    "KELLY SERVICES PR_PUERTO RICO"                 :   "KELLY SERVICES",
-    "MINDLANCE, LLC"                                :   "MINDLANCE",
-    "IST MANAGEMENT SERVICES"                       :   "IST MANAGEMENT",
-    "THE CLEANNERS_UNITED STATES"                   :   "THE CLEANERS",
-    "PRIVATE CAR WASH_UNITED STATES"                :   "PRIVATE CAR WASH",
-    "MAGNIT, LLC"                                   :   "MAGNIT",
-    "PLANET PHARMA GROUP, LLC"                      :   "PLANET PHARMA",
-    "BON APPETIT MANAGEMENT COMPANY"                :   "BON APPETIT",
-    "PACER STAFFING LLC DBA 360 TALENT SOLUTIONS"   :   "360 TALENT SOLUTIONS",
-    "VWR INTERNATIONAL INC."                        :   "VWR",
-    "COAST PACIFIC BUILDERS, INC."                  :   "COAST PACIFIC BUILDERS",
-    "9EDGE, INC._UNITED STATES"                     :   "9 EDGE",
-    "TALENTBURST, INC."                             :   "TALENTBURST",
-    "BEACON HILL STAFFING GROUP, INC."              :   "BEACON HILL STAFFING GROUP",
-    "PWC_UNITED STATES"                             :   "PWC",
-    "J.A.STOWELL CONSTRUCTION_UNITED STATES"        :   "J.A. STOWELL",
-    "TANGRAM INTERIORS_UNITED STATES"               :   "TANGRAM",
-    "COMPUNNEL SOFTWARE GROUP, INC"                 :   "COMPUNNEL SOFTWARE GROUP",
+import re
 
+company_dict = {
+    r'.*INFOSYS.*'             :"INFOSYS",
+    r'.*INFOSOFT.*'            :"INFOSOFT",
+    r'.*GRANT THORNTON.*'      :"GRANT THORNTON",
+    r'.*ROTH.*'                :"ROTH STAFFING",
+    r'.*CONVERGINT.*'          :"CONVERGINT",
+    r'.*PACIFIC BUILDING.*'    :"PACIFIC BUILDING CARE",
+    r'.*DELOITTE.*'            :"DELOITTE",
+    r'.*MBO.*'                 :"MBO PARTNERS",
+    r'.*CLUNE.*'               :"CLUNE CONSTRUCTION",
+    r'.*REDBOCK.*'             :"REDBOCK",
+    r'.*UNIVERSAL.*SERVICE.*'  :"ALLIED UNIVERSAL",
+    r'.*MINDLANCE.*'           :"MINDLANCE",
+    r'.*BAXTER.*'              :"BAXTER CREDIT UNION",
+    r'.*BCU.*'                 :"BAXTER CREDIT UNION",
+    r'.*KELLY SERVICES.*'      :"KELLY SERVICES",
+    r'.*IST.*'                 :"IST MANAGEMENT",
+    r'.*THE CLEANNERS.*'       :"THE CLEANERS",
+    r'.*PRIVATE CAR WASH.*'    :"PRIVATE CAR WASH",
+    r'.*MAGNIT.*'              :"MAGNIT",
+    r'.*PLANET PHARMA.*'       :"PLANET PHARMA",
+    r'.*BON APPETIT.*'         :"BON APPETIT",
+    r'.*360 TALENT SOLUTIONS.*':"360 TALENT SOLUTIONS",
+    r'.*VWR.*'                 :"VWR",
+    r'.*COAST PACIFIC.*'       :"COAST PACIFIC BUILDERS",
+    r'.*9EDGE.*'               :"9 EDGE",
+    r'.*TALENTBURST.*'         :"TALENTBURST",
+    r'.*BEACON HILL.*'         :"BEACON HILL STAFFING GROUP",
+    r'.*PWC.*'                 :"PWC",
+    r'.*J\.A.*'                 :"J.A. STOWELL",
+    r'.*TANGRAM.*'             :"TANGRAM",
+    r'.*COMPUNNEL.*'           :"COMPUNNEL SOFTWARE GROUP",
+    r'.*FOCUS MARKETING.*'     :"FOCUS MARKETING",
+    r'.*THE ANTI.*'            :"THE ANTI",
+    r'.*MINITAB.*'             :"MINITAB",
+    r'.*SKADDEN.*'             :"SKADDEN ARPS SLATE MEAGHER & FLOM LLP",
+    r'.*PROCRAFT.*'            :"PROCRAFT MEDIA",
+    r'.*SPINITAR.*'            :"SPINITAR",
+    r'.*SYSAZZLE.*'            :"SYSAZZLE",
+    r'.*HYDROGEN PROF.*'       :"HYDROGEN PROFESSIONAL SERVICES",
+    r'.*LINQM.*'               :"LINQM",
+    r'.*ACTALENT.*'            :"ACTALENT",
+    r'.*RADIANT SYS.*'         :"RADIANT SYSTEMS",
+    r'.*IRON MOUNTAIN.*'       :"IRON MOUNTAIN",
+    r'.*NEWPORT WINDOW.*'      :"NEWPORT WINDOW MAINTENANCE",
+    r'.*ALIGN B.*'             :"ALIGN BUILDERS",
+    r'.*INTELLECTT.*'          :"INTELLECTT",
+    r'.*QUALITY DUAL.*'        :"QUALITY DUAL INTEGRA SL",
+    r'.*EMCOR.*'               :"EMCOR",
+    r'.*NAVIEN.*'              :"NAVIEN",
     }
 
 class Person:
@@ -50,8 +68,11 @@ class Person:
         self.clearance4         = "**Parking Lot Access 24/7"
 
     def check_company_name(self):
-        if self.company.strip() in company_dict:
-            self.company = company_dict[self.company.strip()]
+        self.company = self.company.strip()
+        for pattern, replacement in company_dict.items():
+            if re.match(pattern, self.company, flags=re.IGNORECASE):
+                self.company = replacement
+                break
 
 
     def check_dept_num(self):

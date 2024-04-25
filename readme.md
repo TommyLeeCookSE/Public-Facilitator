@@ -74,5 +74,5 @@ This project is used by the following companies:
 - Formatted data that comes out:
     - 03/29/2024	Haley	Whitehead	T&D	T2111B	T&D	T2111C	414327		0 Boxes just labels	
 ## About Me
-I'm a Business and Comp Sci major working on becoming a Software/Full-Stack/Automation Engineer. My focus in all my jobs is analyzing reptitive/error prone tasks and functions and automating them. I add value to any and every company I have worked for due to going above and beyond my scope as I try to create more efficient processes for myself and for future employees in my role. I enjoy thinking creatively to try and solve problems especially and I especially enjoy automating menial tasks or tasks where human error is prone.
+I'm a Business and Comp Sci major working on becoming a Software/Full-Stack/Automation Engineer. My focus in all my jobs is analyzing reptitive/error prone tasks and functions and automating them. I add value to any and every company I have worked for due to going above and beyond my scope as I try to create more efficient processes for myself and for future employees in my role. I enjoy thinking creatively to try and solve problems efficiently and I especially enjoy automating menial tasks or tasks where human error is prone.
 

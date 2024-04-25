@@ -183,7 +183,7 @@ table th {
 /*Adjust the badge table*/
 
 #badgeTable {
-  table-layout: fixed;
+  /* table-layout: fixed; */
   width:100%
 }
 
