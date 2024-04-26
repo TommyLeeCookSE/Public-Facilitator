@@ -1,4 +1,4 @@
-import re
+import re, csv, os
 
 company_dict = {
     r'.*INFOSYS.*'             :"INFOSYS",
@@ -91,14 +91,26 @@ class Person:
         
 
 def process(data):
-    split = [line.upper().strip().split('\t') for line in data.split('\n')]
+    file_path = os.path.expanduser("~/Downloads/badge_file_upload.csv")
+    fields= ["First Name", "Last Name", "Employee ID", "Title", "Company","Department Name","Supervisor Name","LOCATION","Clearance","Clearance","Clearance","Clearance","Clearance"]
+    employee_row = []
     employee_list = []
-    for i,item in enumerate(split):
-       employee_list.append(Person(split[i][0].strip(),split[i][1].strip(),split[i][2].strip(),split[i][3].strip(),split[i][4].strip(),split[i][5].strip(),split[i][6].strip()))
+    split = [line.upper().strip().split('\t') for line in data.split('\n')]
     
-    for i,item in enumerate(employee_list):
-        employee_list[i].check_company_name()
-        employee_list[i].check_clearances()
-        employee_list[i].check_dept_num()
+    for i,item in enumerate(split):
+        employee = Person(split[i][0].strip(),split[i][1].strip(),split[i][2].strip(),split[i][3].strip(),split[i][4].strip(),split[i][5].strip(),split[i][6].strip())
+        employee.check_company_name()
+        employee.check_clearances()
+        employee.check_dept_num()
+        employee_list.append(employee)
+
+    
+    with open(file_path, 'w', newline='') as csvfile:
+        csvwriter = csv.writer(csvfile)
+        csvwriter.writerow(fields)
+       
+        for employee in employee_list:
+            employee_row = [employee.fname,employee.lname,employee.EID,employee.title,employee.company,employee.dept_num,employee.supervisor_name,employee.location] + employee.clearance_list
+            csvwriter.writerow(employee_row)
     
     return employee_list
