@@ -40,38 +40,41 @@
             {% endblock %}
             
             <div class="table-container">
-                <table id="badgeTable">
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Employee ID</th>
-                        <th>Title</th>
-                        <th>Company</th>
-                        <th>Department Name</th>
-                        <th>Supervisor Name</th>
-                        <th>Location</th>
-                        <th>Clearance</th>
-                        <th>Clearance</th>
-                        <th>Clearance</th>
-                        <th>Clearance</th>
-                    </tr>
-                    {% for employee in employee_list %}
-                    <tr>
-                        <td> {{ employee.fname}} </td>
-                        <td> {{ employee.lname}} </td>
-                        <td> {{ employee.EID}} </td>
-                        <td> {{ employee.title}} </td>
-                        <td> {{ employee.company}} </td>
-                        <td> {{ employee.dept_num}} </td>
-                        <td> {{ employee.supervisor_name}} </td>
-                        <td> {{ employee.location}} </td>
-                        <td> {{ employee.clearance1}} </td>
-                        <td> {{ employee.clearance2}} </td>
-                        <td> {{ employee.clearance3}} </td>
-                        <td> {{ employee.clearance4}} </td>
-                    </tr>
-                    {% endfor%}
-                </table>
+                {% if employee_list %}
+                    <table id="badgeTable">
+                        
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Employee ID</th>
+                            <th>Title</th>
+                            <th>Company</th>
+                            <th>Department Name</th>
+                            <th>Supervisor Name</th>
+                            <th>Location</th>
+                            <th>Clearance</th>
+                            <th>Clearance</th>
+                            <th>Clearance</th>
+                            <th>Clearance</th>
+                            <th>Clearance</th>
+                        </tr>
+                        {% for employee in employee_list %}
+                        <tr>
+                            <td> {{ employee.fname}} </td>
+                            <td> {{ employee.lname}} </td>
+                            <td> {{ employee.EID}} </td>
+                            <td> {{ employee.title}} </td>
+                            <td> {{ employee.company}} </td>
+                            <td> {{ employee.dept_num}} </td>
+                            <td> {{ employee.supervisor_name}} </td>
+                            <td> {{ employee.location}} </td>
+                            {% for clearance in employee.clearance_list %}
+                                <td> {{ clearance }} </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor%}
+                    </table>
+                {% endif %}
             </div>
         </div>
         

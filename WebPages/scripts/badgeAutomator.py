@@ -52,6 +52,12 @@ company_dict = {
     r'.*NAVIEN.*'              :"NAVIEN",
     }
 
+company_clearance_dict = {
+    "ALLIED UNIVERSAL"     :"IRV_Security Guards",
+    "BON APPETIT"          :"IRV_Bon Appetit General Access - New Cafe, LINC and MLE Atrium -J.Alberga",
+    "PACIFIC BUILDING CARE":"IRV_Janitorial Access"
+}
+
 class Person:
     def __init__(self, fname, lname, EID, title, company, dept_num, supervisor_name,):
         self.fname              = fname
@@ -62,10 +68,7 @@ class Person:
         self.dept_num           = dept_num
         self.supervisor_name    = supervisor_name
         self.location           = "IRVINE"
-        self.clearance1         = "**GENERAL ACCESS - 24/7"
-        self.clearance2         = "**GENERAL ACCESS (Varying Schedules)"
-        self.clearance3         = "**LINC Access (0600-1800 M-F)"
-        self.clearance4         = "**Parking Lot Access 24/7"
+        self.clearance_list = ["**GENERAL ACCESS - 24/7","**GENERAL ACCESS (Varying Schedules)","**LINC Access (0600-1800 M-F)","**Parking Lot Access 24/7"]
 
     def check_company_name(self):
         self.company = self.company.strip()
@@ -74,11 +77,18 @@ class Person:
                 self.company = replacement
                 break
 
+    def add_clearance(self,clearance):
+            self.clearance_list.append(clearance)
+
+    def check_clearances(self):
+        if self.company in company_clearance_dict:
+            self.add_clearance(company_clearance_dict[self.company])
 
     def check_dept_num(self):
         self.dept_num = self.dept_num.lstrip('0123456789.- ')
-
-
+    
+    
+        
 
 def process(data):
     split = [line.upper().strip().split('\t') for line in data.split('\n')]
@@ -88,6 +98,7 @@ def process(data):
     
     for i,item in enumerate(employee_list):
         employee_list[i].check_company_name()
+        employee_list[i].check_clearances()
         employee_list[i].check_dept_num()
     
     return employee_list
