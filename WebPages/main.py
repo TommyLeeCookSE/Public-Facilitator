@@ -9,15 +9,15 @@ app.secret_key = 'tommys_secret_key'
 def home():
     return render_template('HomePage.html')
 
-@app.route('/badge')
-def badgeCaser():
-    return render_template('BadgeUpperCaserPage.html')
+@app.route('/badgePage')
+def badgeAutomator():
+    return render_template('BadgeAutomator.html')
 
 @app.route('/submit_badge_csv', methods=['POST'])
 def submit_badge_csv():
     data = request.form['badgeCsvForm']
     employee_list = badgeAutomator.process(data)
-    return render_template('BadgeUpperCaserPage.html', employee_list=employee_list)
+    return render_template('BadgeAutomator.html', employee_list=employee_list)
     
 
 @app.route('/moves')
