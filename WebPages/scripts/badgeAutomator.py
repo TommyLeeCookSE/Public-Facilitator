@@ -1,5 +1,6 @@
 import re, csv, os
 
+#Stores all company names that need to be reformatted via REGEX
 company_dict = {
     r'.*INFOSYS.*'             :"INFOSYS",
     r'.*INFOSOFT.*'            :"INFOSOFT",
@@ -50,8 +51,10 @@ company_dict = {
     r'.*QUALITY DUAL.*'        :"QUALITY DUAL INTEGRA SL",
     r'.*EMCOR.*'               :"EMCOR",
     r'.*NAVIEN.*'              :"NAVIEN",
+    r'.*SPECTRA.*'             :"SPECTRAFORCE",
     }
 
+#Stores clearances that need to be added to specific profiles
 company_clearance_dict = {
     "ALLIED UNIVERSAL"     :"IRV_Security Guards",
     "BON APPETIT"          :"IRV_Bon Appetit General Access - New Cafe, LINC and MLE Atrium -J.Alberga",
@@ -70,20 +73,23 @@ class Person:
         self.location           = "IRVINE"
         self.clearance_list = ["**GENERAL ACCESS - 24/7","**GENERAL ACCESS (Varying Schedules)","**LINC Access (0600-1800 M-F)","**Parking Lot Access 24/7"]
 
+#Checks to see if company name needs to be reformatted via REGEX
     def check_company_name(self):
         self.company = self.company.strip()
         for pattern, replacement in company_dict.items():
             if re.match(pattern, self.company, flags=re.IGNORECASE):
                 self.company = replacement
                 break
-
+#Adds clearance from clearance_list if clearance is required
     def add_clearance(self,clearance):
             self.clearance_list.append(clearance)
 
+#Checks clearance to see if formatting is required
     def check_clearances(self):
         if self.company in company_clearance_dict:
             self.add_clearance(company_clearance_dict[self.company])
 
+#Removes cost center from department number
     def check_dept_num(self):
         self.dept_num = self.dept_num.lstrip('0123456789.- ')
     
@@ -95,21 +101,21 @@ def process(data):
     fields= ["First Name", "Last Name", "Employee ID", "Title", "Company","Department Name","Supervisor Name","LOCATION","Clearance","Clearance","Clearance","Clearance","Clearance"]
     employee_row = []
     employee_list = []
+    #Data comes in as one giant string, we split this on \t into individual entires in a list, and then break that list into more lists on newline
     split = [line.upper().strip().split('\t') for line in data.split('\n')]
-    
-    for i,item in enumerate(split):
-        employee = Person(split[i][0].strip(),split[i][1].strip(),split[i][2].strip(),split[i][3].strip(),split[i][4].strip(),split[i][5].strip(),split[i][6].strip())
-        employee.check_company_name()
-        employee.check_clearances()
-        employee.check_dept_num()
-        employee_list.append(employee)
-
     
     with open(file_path, 'w', newline='') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow(fields)
-       
-        for employee in employee_list:
+        for line in split:
+            try:
+                employee = Person(line[0].strip(),line[1].strip(),line[2].strip(),line[3].strip(),line[4].strip(),line[5].strip(),line[6].strip())
+            except:
+                print(line)
+            employee.check_company_name()
+            employee.check_clearances()
+            employee.check_dept_num()
+            employee_list.append(employee)
             employee_row = [employee.fname,employee.lname,employee.EID,employee.title,employee.company,employee.dept_num,employee.supervisor_name,employee.location] + employee.clearance_list
             csvwriter.writerow(employee_row)
     
