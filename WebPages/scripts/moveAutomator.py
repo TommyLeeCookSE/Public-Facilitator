@@ -74,7 +74,6 @@ def buildingLetterFinder(cube):
         for letter in cube:
                 if cube[0] == "B":
                         return f"{cube[0]}{cube[1]}"
-                        break
                 elif letter.isdigit():
                         return stringBuilder
                 elif letter.isalpha():
@@ -110,6 +109,8 @@ def buildingFinder(letters):
                 return "PRT"
         elif letters == "T":
                 return "T&D"
+        elif letters == "MIC":
+                return "MIC"
         else:
                 return "Not in List"
 

@@ -9,7 +9,7 @@ app.secret_key = 'tommys_secret_key'
 def home():
     return render_template('HomePage.html')
 
-@app.route('/badgePage')
+@app.route('/badge_page')
 def display_badge_automator():
     return render_template('BadgeAutomatorPage.html')
 
@@ -24,7 +24,7 @@ def submit_badge_csv():
 def movesAutomator():
     return render_template('MovesAutomator.html')
 
-@app.route('/moveAutomatorSubmit', methods=['POST'])
+@app.route('/submit_moves_automator', methods=['POST'])
 def moveAutomatorSubmit():
     data = request.form['moveCsvData']  
     result = moveAutomator.process(data)  
