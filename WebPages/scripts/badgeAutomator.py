@@ -101,22 +101,27 @@ def process(data):
     fields= ["First Name", "Last Name", "Employee ID", "Title", "Company","Department Name","Supervisor Name","LOCATION","Clearance","Clearance","Clearance","Clearance","Clearance"]
     employee_row = []
     employee_list = []
-    #Data comes in as one giant string, we split this on \t into individual entires in a list, and then break that list into more lists on newline
-    split = [line.upper().strip().split('\t') for line in data.split('\n')]
+    # #Data comes in as one giant string, we split this on \t into individual entires in a list, and then break that list into more lists on newline
+    # split = [line.upper().strip().split('\t') for line in data.split('\n')]
     
     with open(file_path, 'w', newline='') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow(fields)
-        for line in split:
+        for line in data.split('\n'):
+            line = line.upper().strip().split('\t')
+            if not line or line == ['']:
+                continue
             try:
                 employee = Person(line[0].strip(),line[1].strip(),line[2].strip(),line[3].strip(),line[4].strip(),line[5].strip(),line[6].strip())
-            except:
-                print(line)
-            employee.check_company_name()
-            employee.check_clearances()
-            employee.check_dept_num()
-            employee_list.append(employee)
-            employee_row = [employee.fname,employee.lname,employee.EID,employee.title,employee.company,employee.dept_num,employee.supervisor_name,employee.location] + employee.clearance_list
-            csvwriter.writerow(employee_row)
+                employee.check_company_name()
+                employee.check_clearances()
+                employee.check_dept_num()
+                employee_list.append(employee)
+                employee_row = [employee.fname,employee.lname,employee.EID,employee.title,employee.company,employee.dept_num,employee.supervisor_name,employee.location] + employee.clearance_list
+                csvwriter.writerow(employee_row)
+            except Exception as e:
+                print(f'Error processing line: {line}\n{e}')
+
+            
     
     return employee_list
