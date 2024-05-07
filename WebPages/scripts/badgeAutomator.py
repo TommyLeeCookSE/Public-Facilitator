@@ -71,7 +71,7 @@ class Person:
         self.dept_num           = dept_num
         self.supervisor_name    = supervisor_name
         self.location           = "IRVINE"
-        self.clearance_list = ["**GENERAL ACCESS - 24/7","**GENERAL ACCESS (Varying Schedules)","**LINC Access (0600-1800 M-F)","**Parking Lot Access 24/7"]
+        self.clearance_list = ["**GENERAL ACCESS - 24/7","**GENERAL ACCESS - 24/7","**GENERAL ACCESS (Varying Schedules)","**LINC Access (0600-1800 M-F)","**Parking Lot Access 24/7"]
 
 #Checks to see if company name needs to be reformatted via REGEX
     def check_company_name(self):
@@ -82,7 +82,7 @@ class Person:
                 break
 #Adds clearance from clearance_list if clearance is required
     def add_clearance(self,clearance):
-            self.clearance_list.append(clearance)
+            self.clearance_list[0] = clearance
 
 #Checks clearance to see if formatting is required
     def check_clearances(self):
